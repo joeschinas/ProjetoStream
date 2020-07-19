@@ -6,16 +6,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-
-
-
-
 
 
     public class JogadorImpl {
@@ -45,12 +41,36 @@ import java.util.stream.Stream;
         Jogador jogador = new Jogador();
         jogador.setPlayer(camp[0]);
         jogador.setPosition(camp[1]);
-        jogador.setYear(Integer.parseInt(camp[2]));
-        jogador.setCurrentTeam(camp[3]);
+        jogador.setCurrentTeam(camp[2]);
+        jogador.setYear(Integer.parseInt(camp[3]));        
         jogador.setGoalsScored(Integer.parseInt(camp[4]));
         listJogadores.add(jogador);
         
     }
     return listJogadores;
     }
+    public void imprimirJogadores(List<Jogador> jogadores){
+        jogadores.stream().forEach(System.out::println);
+  
+     } 
+    public void imprimirJogadorArtilheiro(List<Jogador> jogador){
+    
+   Jogador artilheiro = jogador.stream().max(Comparator.comparingInt(Jogador::getGoalsScored)).get();
+   List<Jogador> jogadorArt = jogador.stream().filter(p->p.getGoalsScored()==artilheiro.getGoalsScored()).collect(Collectors.toList());
+   jogadorArt.forEach(System.out::println);
+    }
+   public void imprimirJogadoresTime(List<Jogador> jogador, String time){
+   jogador.stream().filter(p->p.getCurrentTeam().equals(time)).forEach(System.out::println);
+  
+   } public void imprimirJogadorGoalsTeam(List<Jogador> jogadores, String time){
+   jogadores.stream().filter(jogador->jogador.getCurrentTeam().equals(time) && jogador.getGoalsScored()>0).forEach(System.out::println);
+           
+           
+   }
+   public void gruparJogadoresPorTime (List<Jogador> jogador){
+   
+   jogador.stream().sorted(Comparator.comparing(Jogador::getCurrentTeam)).forEach(System.out::println);
+   }
+   
+    
     }
