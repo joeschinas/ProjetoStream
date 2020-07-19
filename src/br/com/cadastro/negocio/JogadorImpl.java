@@ -71,6 +71,12 @@ import java.util.stream.Stream;
    
    jogador.stream().sorted(Comparator.comparing(Jogador::getCurrentTeam)).forEach(System.out::println);
    }
+   public void imprimirJogadorMiasNovo(List<Jogador> jogador){
+       
+   Jogador jogadorMaisNovo = jogador.stream().min(Comparator.comparingInt(Jogador::getYear)).get();
+        System.out.println("Jogador mais novo: "+jogadorMaisNovo);
+        
+   }
    
-    
+   
     }

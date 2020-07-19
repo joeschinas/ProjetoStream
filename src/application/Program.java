@@ -51,6 +51,10 @@ public class Program {
             
         jimp.gruparJogadoresPorTime(listaDeJogadores);
         
+         System.out.println("--------------mais novos-----");
+         
+         jimp.imprimirJogadorMiasNovo(listaDeJogadores);
+        
         }
     }
 }
